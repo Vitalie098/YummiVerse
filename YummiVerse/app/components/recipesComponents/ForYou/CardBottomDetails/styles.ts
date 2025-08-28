@@ -1,0 +1,13 @@
+import { StyleSheet } from "react-native";
+import { fontFamilies } from "../../../../utils/global/globalStyles";
+
+const styles = StyleSheet.create({
+    cardTitle: {
+        fontSize: 18, 
+        color: "#fff", 
+        lineHeight: 26,
+        fontFamily: fontFamilies.bold
+    }
+})
+
+export default styles
