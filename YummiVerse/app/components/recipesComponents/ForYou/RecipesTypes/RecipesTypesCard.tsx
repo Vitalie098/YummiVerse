@@ -24,7 +24,7 @@ const RecipesTypesCard = ({data, index, onPress}: IRecipesTypesCard) => {
       >
         <View style={styles.footerContainer}>
           <BrandHeaderWithActions />
-          <CardBottomDetails data={data}/>
+          <CardBottomDetails title={data.title}/>
         </View>
       </ImageBackground>
     </TouchableOpacity>

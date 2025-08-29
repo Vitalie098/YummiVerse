@@ -7,6 +7,7 @@ import BalancedEatingPrompt from '../MenuPlanPromoCard'
 import { useTranslation } from 'react-i18next'
 import styles from "./styles"
 import { recipesForYouData as data } from '../../../../utils/fakeData/RecipesForYouScreenData'
+import SwipeableCards from '../SwipeableCards'
 
 const RecipesForYouContent = () => {
   const insets = useSafeAreaInsets()
@@ -21,6 +22,7 @@ const RecipesForYouContent = () => {
       bounces={false}
     >
       <View style={{...styles.container, paddingBottom: insets.bottom}}>
+        <SwipeableCards data={data.help} onPress={onPress} />
         <BestRecipes title={t('recipes.best')} data={data.bestRecipes} onPress={onPress}/>
         <RecipesTypes text={t('recipes.breakfast')} data={data.breakfast} onPress={onPress}/>
         <RecipesTypes text={t('recipes.international')} data={data.international} onPress={onPress}/>

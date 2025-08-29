@@ -4,14 +4,15 @@ import styles from './styles'
 import globalStyles from '../../../utils/global/globalStyles'
 
 interface IThreeDots {
+  isDarkMode?: boolean
   onPress: () => void
 }
 
-const ThreeDots = ({ onPress }: IThreeDots) => {
+const ThreeDots = ({ isDarkMode, onPress }: IThreeDots) => {
   return (
     <TouchableOpacity style={globalStyles.centerAlignedRow} onPress={onPress}>
       {[...Array(3).keys()].map(item => (
-        <View key={item} style={{...styles.circle}} />
+        <View key={item} style={[styles.circle, isDarkMode && styles.darkMode]} />
       ))}
     </TouchableOpacity>
   )

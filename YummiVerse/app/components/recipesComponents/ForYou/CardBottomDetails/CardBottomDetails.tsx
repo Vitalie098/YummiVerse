@@ -5,13 +5,14 @@ import styles from "./styles"
 import { Content } from '../../../../utils/fakeData/RecipesForYouScreenData'
 
 interface ICardBottomDetails {
-  data: Content
+  title: string
+  isLargeText?: boolean
 }
 
-const CardBottomDetails = ({data}: ICardBottomDetails) => {
+const CardBottomDetails = ({title, isLargeText}: ICardBottomDetails) => {
   return (
     <View style={[globalStyles.endAlignedFlex]}>
-      <Text style={styles.cardTitle} numberOfLines={2}>{data.title}</Text>
+      <Text style={isLargeText ? styles.largeText: styles.text} numberOfLines={2}>{title}</Text>
     </View>
   )
 }

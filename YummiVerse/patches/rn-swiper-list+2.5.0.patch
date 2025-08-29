@@ -1,0 +1,146 @@
+diff --git a/node_modules/rn-swiper-list/src/Swiper.tsx b/node_modules/rn-swiper-list/src/Swiper.tsx
+index 9ec9364..19811b6 100644
+--- a/node_modules/rn-swiper-list/src/Swiper.tsx
++++ b/node_modules/rn-swiper-list/src/Swiper.tsx
+@@ -139,6 +139,7 @@ const Swiper = <T,>(
+         <Card
+           key={keyExtractor ? keyExtractor(item, index) : index}
+           cardStyle={cardStyle}
++          numberOfItems={data.length}
+           flippedCardStyle={flippedCardStyle}
+           regularCardStyle={regularCardStyle}
+           index={index}
+diff --git a/node_modules/rn-swiper-list/src/SwiperCard/index.tsx b/node_modules/rn-swiper-list/src/SwiperCard/index.tsx
+index 95ef894..77af2b5 100644
+--- a/node_modules/rn-swiper-list/src/SwiperCard/index.tsx
++++ b/node_modules/rn-swiper-list/src/SwiperCard/index.tsx
+@@ -27,6 +27,7 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+ ) {
+   const {
+     index,
++    numberOfItems,
+     item,
+     activeIndex,
+     prerenderItems = 5,
+@@ -104,8 +105,6 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+ 
+   const swipeLeft = useCallback(() => {
+     onSwipeLeft?.(index);
+-    translateX.value = withSpring(-maxCardTranslation, swipeLeftSpringConfig);
+-    activeIndex.value++;
+   }, [
+     index,
+     activeIndex,
+@@ -199,11 +198,15 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+     .onUpdate((event) => {
+       // Use activeIndex.value directly in worklet context
+       const currentActive = Math.floor(activeIndex.value);
++
++
+       if (currentActive !== index) return;
+       if (onSwipeActive) runOnJS(onSwipeActive)();
+ 
+-      translateX.value = event.translationX;
+-      translateY.value = event.translationY;
++      translateX.value = event.translationX < 0 ? withSpring(0) : event.translationX;
++      translateY.value = event.translationX < 0 ? withSpring(0) : event.translationY;
++
++      if(event.translationX < 0) {return}
+ 
+       if (height / 3 < Math.abs(event.translationY)) {
+         nextActiveIndex.value = interpolate(
+@@ -227,7 +230,6 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+       if (currentActive !== index) return;
+       if (onSwipeEnd) runOnJS(onSwipeEnd)();
+       if (nextActiveIndex.value === activeIndex.value + 1) {
+-        const sign = Math.sign(event.translationX);
+         const signY = Math.sign(event.translationY);
+         const signPositionY = Number.isInteger(
+           interpolate(
+@@ -237,6 +239,9 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+             'clamp'
+           )
+         );
++
++        const sign = Math.sign(event.translationX);
++
+         if (signPositionY) {
+           if (signY === -1 && !disableTopSwipe) {
+             runOnJS(swipeTop)();
+@@ -261,7 +266,10 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+       }
+     })
+     .onFinalize((event) => {
++      
++      const sign = Math.sign(event.translationX);
+       const currentActive = Math.floor(activeIndex.value);
++
+       if (currentActive !== index) return;
+       if (onSwipeEnd) runOnJS(onSwipeEnd)();
+ 
+@@ -291,6 +299,16 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+         }
+       }
+ 
++      if (sign === -1 && !disableLeftSwipe) {
++        runOnJS(swipeLeft)();
++        return;
++      }
++
++      translateX.value = withSpring(0);
++      translateY.value = withSpring(0);
++
++      if(currentActive == (numberOfItems - 1)) return
++
+       if (nextActiveIndex.value === activeIndex.value + 1) {
+         const sign = Math.sign(event.translationX);
+         const signY = Math.sign(event.translationY);
+@@ -325,6 +343,7 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+           }
+         }
+       }
++
+       translateX.value = withSpring(0, swipeBackXSpringConfig);
+       translateY.value = withSpring(0, swipeBackYSpringConfig);
+     });
+@@ -332,6 +351,9 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+   const rCardStyle = useAnimatedStyle(() => {
+     // Handle visibility and rendering based on prerenderItems using animated values
+     // Don't access activeIndex.value directly - use derived values instead
++    const isSecond = (index - activeIndex.value) === 1
++    const isThird = (index - activeIndex.value) === 2
++
+     const currentActive = Math.floor(activeIndex.value);
+     const shouldRender =
+       index < currentActive + prerenderItems && index >= currentActive - 1;
+@@ -340,7 +362,8 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+     const opacity = withTiming(
+       shouldRender && indexDiff < prerenderItems ? 1 : 0
+     );
+-    const scale = withTiming(1 - 0.07 * indexDiff);
++    const scale = withTiming(1 - 0.12 * (index - (activeIndex.value - 1)));
++    const translatteY = isSecond ? 40 : isThird ? 94 : translateY.value
+ 
+     return {
+       opacity,
+@@ -353,7 +376,7 @@ const SwipeableCard = forwardRef(function SwipeableCard<T>(
+           translateX: translateX.value,
+         },
+         {
+-          translateY: translateY.value,
++          translateY: translatteY,
+         },
+       ],
+     };
+diff --git a/node_modules/rn-swiper-list/src/index.ts b/node_modules/rn-swiper-list/src/index.ts
+index 6369266..81694bb 100644
+--- a/node_modules/rn-swiper-list/src/index.ts
++++ b/node_modules/rn-swiper-list/src/index.ts
+@@ -76,6 +76,7 @@ export type SwiperOptions<T> = {
+ export type SwiperCardOptions<T> = {
+   item: T;
+   index: number;
++  numberOfItems: number;
+   activeIndex: SharedValue<number>;
+   prerenderItems?: number;
+   onSwipeRight?: (index: number) => void;
