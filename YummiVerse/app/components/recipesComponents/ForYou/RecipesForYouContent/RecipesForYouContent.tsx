@@ -23,7 +23,7 @@ const RecipesForYouContent = () => {
     >
       <View style={{...styles.container, paddingBottom: insets.bottom}}>
         <SwipeableCards data={data.help} onPress={onPress} />
-        <BestRecipes title={t('recipes.best')} data={data.bestRecipes} onPress={onPress}/>
+        <BestRecipes title={t('recipes.best')} data={data.bestRecipes} />
         <RecipesTypes text={t('recipes.breakfast')} data={data.breakfast} onPress={onPress}/>
         <RecipesTypes text={t('recipes.international')} data={data.international} onPress={onPress}/>
         <RecipesTypes text={t('recipes.scaryTreats')} data={data.scary} onPress={onPress}/>

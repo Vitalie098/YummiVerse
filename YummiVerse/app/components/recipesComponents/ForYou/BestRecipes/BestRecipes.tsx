@@ -3,14 +3,18 @@ import React from 'react'
 import styles from "./styles"
 import BestRecipesCard from './BestRecipesCard'
 import { ContentBestRecipes } from '../../../../utils/fakeData/RecipesForYouScreenData'
+import { useNavigation } from '@react-navigation/native'
+import { RecipesNavigationProp } from '../../../../core/navigation/types/RecipesNavigatorTypes'
 
 interface IBestRecipes {
   title: string
   data: ContentBestRecipes[]
-  onPress: () => void
 }
 
-const BestRecipes = ({data, title, onPress}: IBestRecipes) => {
+const BestRecipes = ({data, title}: IBestRecipes) => {
+  const navigation = useNavigation<RecipesNavigationProp>()
+  const onPress = () => navigation.navigate("CommunityStories")
+
   return (
     <>
       <Text style={styles.title} numberOfLines={1}>{title}</Text>
