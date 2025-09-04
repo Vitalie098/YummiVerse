@@ -9,15 +9,11 @@ import CardBottomDetails from '../CardBottomDetails/CardBottomDetails'
 interface IRecipesHelpCard {
   item: IHelp
   isCurrent: boolean
-  onPress: () => void
 }
 
-const SwipeableCard = ({item, onPress, isCurrent}: IRecipesHelpCard) => {
+const SwipeableCard = ({item, isCurrent}: IRecipesHelpCard) => {
   return (
-    <Pressable
-      style={styles.containerCard}
-      onPress={onPress}
-    >
+    <Pressable style={styles.containerCard}>
       <View style={styles.headerWrapper}>
         <View style={styles.brandContainer}/>
         <ThreeDots onPress={() => {}} isDarkMode={true}/>

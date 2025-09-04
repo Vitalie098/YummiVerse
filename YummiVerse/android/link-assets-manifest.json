@@ -1,0 +1,53 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "app/assets/fonts/NestleBookCondensed.otf",
+      "sha1": "2f7a82647df3302f2039b0e48fa75bd1cc4460c2"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextBold.otf",
+      "sha1": "ee204d365b6c7bf31847bfa04fc622e9f79a0af7"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextBoldCondensed.otf",
+      "sha1": "e687ac6ecef4967cb4db5b6e1576ac36484b8d83"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextBoldCondensedItalic.otf",
+      "sha1": "41a5fd7abf4476f5b5fa8d4146928a4df7012671"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextBoldItalic.otf",
+      "sha1": "f28b44e8d322869601c5eca02a62ca17b9290648"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextBook.otf",
+      "sha1": "a24b805d4af424865032a5517b8b975df62235c7"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextBookCondensedItalic.otf",
+      "sha1": "0749057c9d8bd9414a14ab7ec849e4347e240fc8"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextItalic.otf",
+      "sha1": "a950fe026984eb906def44bf032d4534c19d6174"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextLight.otf",
+      "sha1": "e7810cd26cd3572407421fa6f46cce1bde84868e"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextLightCondensed.otf",
+      "sha1": "1c44760f9bb62876ab39850d9a0a025341d7e975"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextLightCondensedItalic.otf",
+      "sha1": "bd51f90550c3696948a2d32dedd35300445492a9"
+    },
+    {
+      "path": "app/assets/fonts/NestleTextLightItalic.otf",
+      "sha1": "cd86a3e8a853b309ac6beed73b5899539879c742"
+    }
+  ]
+}

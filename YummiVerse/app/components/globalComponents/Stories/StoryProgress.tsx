@@ -2,7 +2,7 @@ import { View, Animated, Easing } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { screenWidth } from '../../../utils/global/globalValues'
 import styles from "./styles"
-import { delay } from '../../../utils/functions/delay'
+import { delay } from '../../../helpers/functions/delay'
 
 interface IStoryProgress {
   isLongPressed: boolean

@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React, { useRef, useState } from 'react'
 import styles from './styles'
-import RecipesHelpCard from './SwipeableCard'
+import SwipeableCard from './SwipeableCard'
 import { IHelp } from '../../../../utils/fakeData/RecipesForYouScreenData'
 import { Swiper, type SwiperCardRefType } from 'rn-swiper-list';
 import globalStyles from '../../../../utils/global/globalStyles'
@@ -10,10 +10,9 @@ import { screenWidth } from '../../../../utils/global/globalValues'
 
 interface RecipesHelpInterface {
   data: IHelp[]
-  onPress: () => void
 }
 
-const SwipeableCards = ({data, onPress}: RecipesHelpInterface) => {
+const SwipeableCards = ({data}: RecipesHelpInterface) => {
   const [activeIndex, setActiveIndex] = useState(0)
   const {t} = useTranslation()
   
@@ -38,7 +37,7 @@ const SwipeableCards = ({data, onPress}: RecipesHelpInterface) => {
           cardStyle={{...globalStyles.fullScreen}}
           translateXRange={[-screenWidth / 10, 0, screenWidth / 25]}
           onSwipeRight={(cardIndex) => setActiveIndex(cardIndex + 1)}
-          renderCard={(item, index) => <RecipesHelpCard item={item} onPress={onPress} isCurrent={activeIndex === index}/>}
+          renderCard={(item, index) => <SwipeableCard item={item} isCurrent={activeIndex === index}/>}
         />
       </View>
     </View>

@@ -12,6 +12,18 @@
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B8B87CBE859CEC2AE4201623 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		531FAD8DD3954AB190B43086 /* NestleBookCondensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23D6B7E3BA804FCE928B6147 /* NestleBookCondensed.otf */; };
+		D2BC40E6C6C54D2285707BA5 /* NestleTextBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 34949EB4BD6E40E09C7F5AD2 /* NestleTextBold.otf */; };
+		9654E1DF8CE7422B9E30D3EB /* NestleTextBoldCondensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9D149674C4DC4D7CA87F9CAA /* NestleTextBoldCondensed.otf */; };
+		95C6FE3E0FE34E0B9AE24559 /* NestleTextBoldCondensedItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DBD449B771F64B3DAD5D2459 /* NestleTextBoldCondensedItalic.otf */; };
+		F553FBF2472B4EB1B460EAEA /* NestleTextBoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE1018FD392146B7AC2378A3 /* NestleTextBoldItalic.otf */; };
+		74F238A7693C42468CAE37B7 /* NestleTextBook.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4754A0D9A8934D539E92CCB7 /* NestleTextBook.otf */; };
+		9BD1C7FDE8C24164840889C2 /* NestleTextBookCondensedItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48A8A621F8B64744B4E7022F /* NestleTextBookCondensedItalic.otf */; };
+		20CDC2880C10499DAA760D49 /* NestleTextItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = E9D631792FFB4A718D6BDAD0 /* NestleTextItalic.otf */; };
+		4DF75B8AAC5741219BA8D367 /* NestleTextLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1C3AFDB53DEF4B809613492A /* NestleTextLight.otf */; };
+		EF7F45E7DB6A4A2E874B3EA3 /* NestleTextLightCondensed.otf in Resources */ = {isa = PBXBuildFile; fileRef = DA60C9C54FA74F8C897EDB0F /* NestleTextLightCondensed.otf */; };
+		658A9DAAE4D2446BBF3D11E5 /* NestleTextLightCondensedItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 247D2A6E8E264CB08A3C6F76 /* NestleTextLightCondensedItalic.otf */; };
+		029EF880FA1F478CA164EA15 /* NestleTextLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD2D6AC222D9499E9F97F66D /* NestleTextLightItalic.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +37,18 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = YummiVerse/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = YummiVerse/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		23D6B7E3BA804FCE928B6147 /* NestleBookCondensed.otf */ = {isa = PBXFileReference; name = "NestleBookCondensed.otf"; path = "../app/assets/fonts/NestleBookCondensed.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		34949EB4BD6E40E09C7F5AD2 /* NestleTextBold.otf */ = {isa = PBXFileReference; name = "NestleTextBold.otf"; path = "../app/assets/fonts/NestleTextBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9D149674C4DC4D7CA87F9CAA /* NestleTextBoldCondensed.otf */ = {isa = PBXFileReference; name = "NestleTextBoldCondensed.otf"; path = "../app/assets/fonts/NestleTextBoldCondensed.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DBD449B771F64B3DAD5D2459 /* NestleTextBoldCondensedItalic.otf */ = {isa = PBXFileReference; name = "NestleTextBoldCondensedItalic.otf"; path = "../app/assets/fonts/NestleTextBoldCondensedItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FE1018FD392146B7AC2378A3 /* NestleTextBoldItalic.otf */ = {isa = PBXFileReference; name = "NestleTextBoldItalic.otf"; path = "../app/assets/fonts/NestleTextBoldItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4754A0D9A8934D539E92CCB7 /* NestleTextBook.otf */ = {isa = PBXFileReference; name = "NestleTextBook.otf"; path = "../app/assets/fonts/NestleTextBook.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		48A8A621F8B64744B4E7022F /* NestleTextBookCondensedItalic.otf */ = {isa = PBXFileReference; name = "NestleTextBookCondensedItalic.otf"; path = "../app/assets/fonts/NestleTextBookCondensedItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E9D631792FFB4A718D6BDAD0 /* NestleTextItalic.otf */ = {isa = PBXFileReference; name = "NestleTextItalic.otf"; path = "../app/assets/fonts/NestleTextItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1C3AFDB53DEF4B809613492A /* NestleTextLight.otf */ = {isa = PBXFileReference; name = "NestleTextLight.otf"; path = "../app/assets/fonts/NestleTextLight.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DA60C9C54FA74F8C897EDB0F /* NestleTextLightCondensed.otf */ = {isa = PBXFileReference; name = "NestleTextLightCondensed.otf"; path = "../app/assets/fonts/NestleTextLightCondensed.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		247D2A6E8E264CB08A3C6F76 /* NestleTextLightCondensedItalic.otf */ = {isa = PBXFileReference; name = "NestleTextLightCondensedItalic.otf"; path = "../app/assets/fonts/NestleTextLightCondensedItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CD2D6AC222D9499E9F97F66D /* NestleTextLightItalic.otf */ = {isa = PBXFileReference; name = "NestleTextLightItalic.otf"; path = "../app/assets/fonts/NestleTextLightItalic.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +99,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				14C58EF9220645E48A77A6D6 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -97,6 +122,26 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		14C58EF9220645E48A77A6D6 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				23D6B7E3BA804FCE928B6147 /* NestleBookCondensed.otf */,
+				34949EB4BD6E40E09C7F5AD2 /* NestleTextBold.otf */,
+				9D149674C4DC4D7CA87F9CAA /* NestleTextBoldCondensed.otf */,
+				DBD449B771F64B3DAD5D2459 /* NestleTextBoldCondensedItalic.otf */,
+				FE1018FD392146B7AC2378A3 /* NestleTextBoldItalic.otf */,
+				4754A0D9A8934D539E92CCB7 /* NestleTextBook.otf */,
+				48A8A621F8B64744B4E7022F /* NestleTextBookCondensedItalic.otf */,
+				E9D631792FFB4A718D6BDAD0 /* NestleTextItalic.otf */,
+				1C3AFDB53DEF4B809613492A /* NestleTextLight.otf */,
+				DA60C9C54FA74F8C897EDB0F /* NestleTextLightCondensed.otf */,
+				247D2A6E8E264CB08A3C6F76 /* NestleTextLightCondensedItalic.otf */,
+				CD2D6AC222D9499E9F97F66D /* NestleTextLightItalic.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -161,6 +206,18 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				B8B87CBE859CEC2AE4201623 /* PrivacyInfo.xcprivacy in Resources */,
+				531FAD8DD3954AB190B43086 /* NestleBookCondensed.otf in Resources */,
+				D2BC40E6C6C54D2285707BA5 /* NestleTextBold.otf in Resources */,
+				9654E1DF8CE7422B9E30D3EB /* NestleTextBoldCondensed.otf in Resources */,
+				95C6FE3E0FE34E0B9AE24559 /* NestleTextBoldCondensedItalic.otf in Resources */,
+				F553FBF2472B4EB1B460EAEA /* NestleTextBoldItalic.otf in Resources */,
+				74F238A7693C42468CAE37B7 /* NestleTextBook.otf in Resources */,
+				9BD1C7FDE8C24164840889C2 /* NestleTextBookCondensedItalic.otf in Resources */,
+				20CDC2880C10499DAA760D49 /* NestleTextItalic.otf in Resources */,
+				4DF75B8AAC5741219BA8D367 /* NestleTextLight.otf in Resources */,
+				EF7F45E7DB6A4A2E874B3EA3 /* NestleTextLightCondensed.otf in Resources */,
+				658A9DAAE4D2446BBF3D11E5 /* NestleTextLightCondensedItalic.otf in Resources */,
+				029EF880FA1F478CA164EA15 /* NestleTextLightItalic.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

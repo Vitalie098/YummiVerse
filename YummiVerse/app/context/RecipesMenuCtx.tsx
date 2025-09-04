@@ -23,7 +23,7 @@ export const RecipesMenuProvider = ({children}: {children: ReactNode}) => {
 export const useRecipesMenu = (): RecipesMenuContextInterface => {
   const context = useContext(RecipesMenuContext);
   if (context === undefined) {
-    throw new Error('useRecipesMneu must be used within a RecipesMenuProvider');
+    throw new Error('useRecipesMenu must be used within a RecipesMenuProvider');
   }
   return context;
 };

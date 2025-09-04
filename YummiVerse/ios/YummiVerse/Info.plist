@@ -32,7 +32,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>RCTNewArchEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -49,5 +49,20 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NestleBookCondensed.otf</string>
+		<string>NestleTextBold.otf</string>
+		<string>NestleTextBoldCondensed.otf</string>
+		<string>NestleTextBoldCondensedItalic.otf</string>
+		<string>NestleTextBoldItalic.otf</string>
+		<string>NestleTextBook.otf</string>
+		<string>NestleTextBookCondensedItalic.otf</string>
+		<string>NestleTextItalic.otf</string>
+		<string>NestleTextLight.otf</string>
+		<string>NestleTextLightCondensed.otf</string>
+		<string>NestleTextLightCondensedItalic.otf</string>
+		<string>NestleTextLightItalic.otf</string>
+	</array>
 </dict>
 </plist>

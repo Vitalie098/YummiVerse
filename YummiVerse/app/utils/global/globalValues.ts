@@ -4,3 +4,4 @@ const { width, height } = Dimensions.get('screen')
 
 export const screenWidth = width
 export const screenHeight = height
+export const absoluteMenyHeight = 110
