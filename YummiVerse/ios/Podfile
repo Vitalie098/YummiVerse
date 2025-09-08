@@ -17,6 +17,21 @@ end
 target 'YummiVerse' do
   config = use_native_modules!
 
+  def node_require(script)
+    require Pod::Executable.execute_command('node', ['-p',
+      "require.resolve(
+        '#{script}',
+        { paths: [process.argv[1]] }
+      )", __dir__]).strip
+  end
+
+  node_require('react-native/scripts/react_native_pods.rb')
+  node_require('react-native-permissions/scripts/setup.rb')
+
+  setup_permissions([
+    'Camera',
+  ])
+
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.

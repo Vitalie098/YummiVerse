@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet } from 'react-native'
+import { View } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import StoryProgress from './StoryProgress'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -6,6 +6,7 @@ import StoryHeaderActions from './components/StoryHeaderActions'
 import styles from "./styles"
 import Content from './components/Content'
 import StoryTapButton from './components/StoryTapButton'
+import FastImage from 'react-native-fast-image'
 
 interface ISlide {
   item: any
@@ -35,12 +36,12 @@ const Slide = ({item, active, index, isScrolling, onPrevNextSlide}: ISlide) => {
 
      setLoading(true)
      setActiveSlide(newSlide)
-  },[activeSlide])
+  },[item.data.length])
 
   return (
     <View style={styles.container}>
-      <View style={[StyleSheet.absoluteFillObject]}>
-          <Image
+      <View style={styles.imageWrapper}>
+          <FastImage
             onLoad={() => {
               setLoading(false)
               setDuration(5000)
@@ -50,7 +51,7 @@ const Slide = ({item, active, index, isScrolling, onPrevNextSlide}: ISlide) => {
           />
       </View>
 
-      <View style={[StyleSheet.absoluteFillObject, styles.buttonsWrapper]}>
+      <View style={[styles.buttonsWrapper]}>
         <StoryTapButton 
           setIsLongPressed={setIsLongPressed}
           goPrevNextHandler={() => goPrevNextHandler(activeSlide - 1, "prev", -1)}
@@ -89,3 +90,4 @@ const Slide = ({item, active, index, isScrolling, onPrevNextSlide}: ISlide) => {
 }
 
 export default Slide
+

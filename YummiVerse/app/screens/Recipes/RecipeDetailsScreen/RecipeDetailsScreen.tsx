@@ -8,6 +8,9 @@ import Comments from '../../../components/recipesComponents/RecipeDetailsCompone
 import AbsoluteMenu from '../../../components/recipesComponents/RecipeDetailsComponents/AbsoluteMenu';
 import styles from "./styles"
 import useAnimatedRecipesDetails from '../../../helpers/hooks/useAnimatedRecipesDetails';
+import BottomSheet from '@gorhom/bottom-sheet';
+import BlurScreen from '../../../components/globalComponents/BlurScreen/BlurScreen';
+import RecipesDetailsBottomSheet from '../../../components/recipesComponents/RecipeDetailsComponents/RecipesDetailsBottomSheet';
 import { absoluteMenyHeight } from '../../../utils/global/globalValues';
 
 const RecipeDetails = () => {
@@ -15,7 +18,9 @@ const RecipeDetails = () => {
   const [layoutSection, setLayoutSection] = useState<number[]>([])
   const [stopAnimated, setStopAnimated] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [showBlur, setShowBlur] = useState(false)
 
+  const bottomSheetRef = useRef<BottomSheet>(null)
   const scrollRef = useRef<ScrollView>(null)
   const inputRef = useRef<TextInput>(null)
   const timeOut = useRef<any>(null)
@@ -61,6 +66,20 @@ const RecipeDetails = () => {
     return false
   }
 
+  const openBottomSheetHandler = () => {
+    setShowBlur(true)
+    bottomSheetRef.current?.expand()
+  }
+
+  const onChangeBTSHandler = (index: number) => {
+    if(index === -1) setShowBlur(false)
+  }
+
+  const closeBottomSheetHandler = () => {
+    setShowBlur(false)
+    bottomSheetRef.current?.close()
+  }
+
   return (
     <>
       <Animated.ScrollView 
@@ -77,6 +96,7 @@ const RecipeDetails = () => {
           layout={layoutMenu}
           activeIndex={activeIndex} 
           opacityView={opacityView} 
+          openBottomSheetHandler={openBottomSheetHandler}
         />
         <Informations />
         <Servings handleLayout={handleLayoutSection} />
@@ -91,10 +111,11 @@ const RecipeDetails = () => {
         handleLayoutMenu={handleLayoutMenu}
         animatedHeaderRecipesDetailsTranslate={animatedHeaderRecipesDetailsTranslate}  
       />
+
+      {showBlur && <BlurScreen />}
+      <RecipesDetailsBottomSheet ref={bottomSheetRef} closeBottomSheetHandler={closeBottomSheetHandler} onChange={onChangeBTSHandler}/>
     </> 
   )
 }
 
 export default RecipeDetails
-
-

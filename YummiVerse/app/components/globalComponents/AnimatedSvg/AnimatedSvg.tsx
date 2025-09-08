@@ -27,7 +27,6 @@ const AnimatedSvg = ({layout, svgWidth, itemsLength, styles, isTabBar, decrease,
   }, [activeIndex, layout])
 
   const animatedStyles = useAnimatedStyle(() => ({ transform: [{ translateX: withTiming(xOffset.value, { duration: 250 }) }]}))
-  
   return (
     <AnimatedSVG 
       width={svgWidth} 

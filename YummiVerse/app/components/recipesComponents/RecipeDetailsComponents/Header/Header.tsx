@@ -12,9 +12,10 @@ interface IHeader {
   activeIndex: number
   goTo: (index: number) => void
   layout: {x: number, width: number}[]
+  openBottomSheetHandler: () => void
 }
 
-const Header = ({layout, opacityView, activeIndex, goTo}: IHeader) => {
+const Header = ({layout, opacityView, activeIndex, goTo, openBottomSheetHandler}: IHeader) => {
   const navigation = useNavigation()
 
   return (
@@ -36,7 +37,7 @@ const Header = ({layout, opacityView, activeIndex, goTo}: IHeader) => {
         <Text style={styles.title}>Air Fryer Shawarma Aubergine and Chickpea Bowl</Text>
           
         <Animated.View style={{...styles.buttonsWrapper, opacity: opacityView}}>
-          <TouchableOpacity style={styles.buttonCook}>
+          <TouchableOpacity style={styles.buttonCook} onPress={openBottomSheetHandler}>
             <Text style={styles.buttonCookText}>Cook now</Text>
           </TouchableOpacity>
 

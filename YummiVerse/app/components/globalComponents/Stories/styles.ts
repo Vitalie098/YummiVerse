@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     width: screenWidth, 
     height: screenHeight
   },
+  imageWrapper: {
+    ...StyleSheet.absoluteFillObject
+  },
   header: {
     width: "100%",
     position: "absolute", 
@@ -32,7 +35,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   buttonsWrapper: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    ...StyleSheet.absoluteFillObject
   }
 })
 

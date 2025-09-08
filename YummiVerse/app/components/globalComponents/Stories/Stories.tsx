@@ -1,11 +1,11 @@
-import { Animated, FlatList, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
+import { FlatList, NativeSyntheticEvent, NativeScrollEvent } from 'react-native'
 import React, { useRef, useState } from 'react'
 import Story from './Story'
 import { screenWidth } from '../../../utils/global/globalValues'
 import { slides } from '../../../utils/fakeData/Stories'
 import { Directions, Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
-import { runOnJS } from 'react-native-reanimated'
+import Animated, { runOnJS, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated'
 
 const Stories = () => {
   const [isScrolling, setIsScrolling] = useState(false)
@@ -13,10 +13,16 @@ const Stories = () => {
   
   const navigation = useNavigation()
   const ref = useRef<FlatList>(null)
-  const scrollX = React.useRef(new Animated.Value(0)).current
 
-  const onScroll = Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })
-  const onMomentumScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => setActiveIndex(Math.floor(e.nativeEvent.contentOffset.x / screenWidth))
+  const scrollX = useSharedValue(0)
+  const onScroll = useAnimatedScrollHandler({
+    onScroll: (event) => scrollX.value = event.contentOffset.x
+  })
+
+  const onMomentumScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const index = Math.round(e.nativeEvent.contentOffset.x / screenWidth)
+    setActiveIndex(index)
+  }
 
   const onClose = () => navigation.goBack();
 
@@ -31,11 +37,12 @@ const Stories = () => {
       <Animated.FlatList
         ref={ref}
         data={slides}
-        keyExtractor={(item) => item.key}
+        keyExtractor={(item) => item.key.toString()}
         showsHorizontalScrollIndicator={false}
         onScrollBeginDrag={() => setIsScrolling(true)}
         onScrollEndDrag={() => setIsScrolling(false)}
         onMomentumScrollEnd={onMomentumScrollEnd}
+        getItemLayout={(data, index) => ({ length: screenWidth, offset: screenWidth * index, index }) }
         horizontal
         pagingEnabled
         onScroll={onScroll}

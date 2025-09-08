@@ -16,7 +16,7 @@ const Counter = ({containerStyles, textStyles}: ICounter) => {
   const counterHandler = (number: number) => {
     setCount(prev => prev + number)
   }
-  
+
   return (
     <View style={[styles.container, containerStyles]}>
       <TouchableOpacity 
