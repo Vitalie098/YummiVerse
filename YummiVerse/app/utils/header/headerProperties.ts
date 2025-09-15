@@ -8,7 +8,7 @@ export const menuByScreen = {
 export const routeNames = Object.keys(menuByScreen)
 export const recipesDetailsMenu = ["Ingredients", "Instructions", "Comments"]
 
-export type RouteName = "Plan" | "MyCoach" | "Profile" | "Recipes" | "Community"
+export type RouteName = "Plan" | "MyCoach" | "Recipes" | "Community"
 export type RouteProp = {name: RouteName, key: ""}
 
 

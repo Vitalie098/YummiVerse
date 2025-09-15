@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     color: colors.mainColorT,
   },
   animatedObject: {
-    bottom: -29,
+    bottom: -20,
     position: 'absolute',
   },
 });

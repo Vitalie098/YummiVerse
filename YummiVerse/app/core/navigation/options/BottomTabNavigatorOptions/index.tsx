@@ -1,5 +1,4 @@
 import {Text} from 'react-native';
-
 import RecipesIcon from '../../../../assets/svg/RecipesBottomTabNavigatorIconActive.svg';
 import PlanIcon from '../../../../assets/svg/PlanBottomTabNavigatorIcon.svg';
 import CommunityIcon from '../../../../assets/svg/CommunityBottomTabNavigatorIcon.svg';
@@ -13,8 +12,8 @@ export const tabNavigatorOptions = {
 };
 
 export const recipesStackOptions = {
-  tabBarIcon: ({focused}: {focused: Boolean}) => {
-    return <RecipesIcon />;
+  tabBarIcon: ({color}: {color: string}) => {
+    return <RecipesIcon color={color}/>;
   },
   tabBarLabel: ({focused}: {focused: boolean}) => {
     if (focused) return <Text style={styles.label}>Recipes</Text>;
@@ -23,8 +22,8 @@ export const recipesStackOptions = {
 };
 
 export const planStackOptions = {
-  tabBarIcon: ({focused}: {focused: Boolean}) => {
-    return <PlanIcon />;
+  tabBarIcon: ({color}: {color: string}) => {
+    return <PlanIcon color={color}/>;
   },
   tabBarLabel: ({focused}: {focused: boolean}) => {
     if (focused) return <Text style={styles.label}>Plan</Text>;
@@ -33,8 +32,8 @@ export const planStackOptions = {
 };
 
 export const communityStackOptions = {
-  tabBarIcon: ({focused}: {focused: Boolean}) => {
-    return <CommunityIcon />;
+  tabBarIcon: ({color}: {color: string}) => {
+    return <CommunityIcon color={color} />;
   },
   tabBarLabel: ({focused}: {focused: boolean}) => {
     if (focused) return <Text style={styles.label}>Community</Text>;
@@ -43,8 +42,8 @@ export const communityStackOptions = {
 };
 
 export const myCoachStackOptions = {
-  tabBarIcon: ({focused}: {focused: Boolean}) => {
-    return <MyCoachIcon />;
+  tabBarIcon: ({color}: {color: string}) => {
+    return <MyCoachIcon color={color}/>;
   },
   tabBarLabel: ({focused}: {focused: boolean}) => {
     if (focused) return <Text style={styles.label}>MyCoach</Text>;
