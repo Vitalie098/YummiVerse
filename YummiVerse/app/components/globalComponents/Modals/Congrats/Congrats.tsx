@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Close from "../../../../assets/svg/CloseModalIcon.svg"
@@ -9,6 +9,7 @@ import styles from "./styles"
 import globalStyles, { colors } from '../../../../utils/global/globalStyles'
 import { getPermissionAndTakePhoto } from '../../../../helpers/permisions/getCameraPermision'
 import { dataByScreenType } from '../../../../utils/fakeData/Congrats'
+import FastImage from 'react-native-fast-image'
 
 type shareType = "photo" | "comment"
 
@@ -54,7 +55,7 @@ const Congrats = () => {
       </View>
 
       <View style={styles.imagesWrapper}>
-        <Image source={require("../../../../assets/png/Man.png")} style={globalStyles.fullScreen}/>
+        <FastImage source={require("../../../../assets/png/Man.png")} style={globalStyles.fullScreen}/>
         <Confetti style={styles.confetti} width="100%"/>
       </View>
     </View>

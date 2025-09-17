@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React, { useRef, useState } from 'react'
-import styles from './styles'
+import styles from "./styles"
 import SwipeableCard from './SwipeableCard'
 import { IHelp } from '../../../../utils/fakeData/RecipesForYouScreenData'
 import { Swiper, type SwiperCardRefType } from 'rn-swiper-list';
 import globalStyles from '../../../../utils/global/globalStyles'
-import { useTranslation } from 'react-i18next'
 import { screenWidth } from '../../../../utils/global/globalValues'
+import { useTranslation } from 'react-i18next'
 
 interface RecipesHelpInterface {
   data: IHelp[]

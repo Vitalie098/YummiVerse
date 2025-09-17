@@ -1,0 +1,1 @@
+export type displayModeButton = 1 | 2

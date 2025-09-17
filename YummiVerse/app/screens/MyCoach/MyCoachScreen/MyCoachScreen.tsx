@@ -5,7 +5,7 @@ import styles from './styles'
 const MyCoachScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>MyCoachScreen</Text>
+      <Text style={styles.text}>MyCoachScreen</Text>
     </View>
   )
 }

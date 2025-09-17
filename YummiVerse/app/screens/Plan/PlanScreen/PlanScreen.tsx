@@ -5,7 +5,7 @@ import styles from './styles';
 const PlanScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Plan Screen</Text>
+      <Text style={styles.text}>Plan Screen</Text>
     </View>
   );
 };

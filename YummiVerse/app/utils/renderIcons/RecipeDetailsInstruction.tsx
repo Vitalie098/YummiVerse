@@ -1,7 +1,7 @@
 import Serving from "../../assets/svg/ServingDome.svg"
 import UtensilsIcon from "../../assets/svg/UtensilsIcon.svg"
 import Light from "../../assets/svg/Light.svg"
-import { Image } from "react-native"
+import FastImage from "react-native-fast-image"
 
 export type iconType = "serving" | "utensils"
 export type adviceType = "nutritional" | "tasty"
@@ -24,7 +24,7 @@ export const getAdviceIcon = (iconType: adviceType) => {
     case "nutritional":
       return <Light />
     case "tasty":
-      return <Image source={require("../../assets/png/Hand.png")} style={{width: 90, height: 102}}/>
+      return <FastImage source={require("../../assets/png/Hand.png")} style={{width: 90, height: 102}}/>
     default: 
       const _: never = iconType
       throw new Error('There is no such type');

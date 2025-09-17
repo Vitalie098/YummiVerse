@@ -1,9 +1,10 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Asset } from 'react-native-image-picker'
 import styles from "./styles"
 import { useNavigation } from '@react-navigation/native'
 import { RecipesNavigationProp } from '../../../../../../core/navigation/types/RecipesNavigatorTypes'
+import FastImage from 'react-native-fast-image'
 
 interface IPhoto {
   asset: Asset
@@ -15,7 +16,7 @@ const SharePhoto = ({asset}: IPhoto) => {
   return (
     <>
       <View style={styles.imageContainer}>
-        <Image source={asset}  style={styles.image}/>
+        <FastImage source={asset}  style={styles.image}/>
       </View>
 
       <View style={styles.buttonsWrapper}>

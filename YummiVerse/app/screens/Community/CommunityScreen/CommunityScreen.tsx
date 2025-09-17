@@ -5,7 +5,7 @@ import styles from './styles'
 const CommunityScreen = () => {
   return (
     <View style={styles.container}> 
-      <Text>CommunityScreen</Text>
+      <Text style={styles.text}>CommunityScreen</Text>
     </View>
   )
 }

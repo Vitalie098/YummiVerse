@@ -1,7 +1,7 @@
 import { ImageBackground, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import styles from "./styles"
-import BrandHeaderWithActions from '../RecipeCardHeader'
+import RecipeCardHeader from '../RecipeCardHeader'
 import CardBottomDetails from '../CardBottomDetails/CardBottomDetails'
 import { Content } from '../../../../utils/fakeData/RecipesForYouScreenData'
 
@@ -23,7 +23,7 @@ const RecipesTypesCard = ({data, index, onPress}: IRecipesTypesCard) => {
         resizeMode='cover'
       >
         <View style={styles.footerContainer}>
-          <BrandHeaderWithActions />
+          <RecipeCardHeader />
           <CardBottomDetails title={data.title}/>
         </View>
       </ImageBackground>

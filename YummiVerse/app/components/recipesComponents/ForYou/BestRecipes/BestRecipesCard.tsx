@@ -1,7 +1,8 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from "./styles"
 import { ContentBestRecipes } from '../../../../utils/fakeData/RecipesForYouScreenData'
+import FastImage from 'react-native-fast-image'
 
 interface IBestRecipesCard {
   item: ContentBestRecipes
@@ -14,7 +15,7 @@ const BestRecipesCard = ({index, item, onPress}: IBestRecipesCard) => {
     <View style={{...styles.container, marginLeft: index === 0 ? 17 : 0}}>
       <TouchableOpacity style={styles.containerCard} onPress={onPress}>
         <View style={styles.containerImage}>
-          <Image source={item.image} style={styles.image} />
+          <FastImage source={item.image} style={styles.image} />
         </View>
       </TouchableOpacity>
 

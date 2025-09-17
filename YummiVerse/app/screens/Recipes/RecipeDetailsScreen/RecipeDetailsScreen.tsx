@@ -1,4 +1,4 @@
-import { Animated, ImageBackground, LayoutChangeEvent, ScrollView, TextInput, View } from 'react-native'
+import { Animated, LayoutChangeEvent, ScrollView, TextInput } from 'react-native'
 import React, { useRef, useState } from 'react'
 import Header from '../../../components/recipesComponents/RecipeDetailsComponents/Header';
 import Informations from '../../../components/recipesComponents/RecipeDetailsComponents/Informations';
