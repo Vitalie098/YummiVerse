@@ -27,13 +27,17 @@ const useAnimatedHeader = () => {
     );
   });
 
-  const headerAnimatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: animatedHeaderTranslate.value }],
+  const containerAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: animatedHeaderTranslate.value }]
+  }));
+
+  const contentAnimatedStyle = useAnimatedStyle(() => ({
     opacity: animatedHeaderOpacity.value,
   }));
 
   return {
-    headerAnimatedStyle,
+    containerAnimatedStyle,
+    contentAnimatedStyle
   };
 };
 

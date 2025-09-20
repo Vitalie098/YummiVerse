@@ -1,120 +1,98 @@
-import { Animated, LayoutChangeEvent, ScrollView, TextInput } from 'react-native'
-import React, { useRef, useState } from 'react'
-import Header from '../../../components/recipesComponents/RecipeDetailsComponents/Header';
-import Informations from '../../../components/recipesComponents/RecipeDetailsComponents/Informations';
-import Servings from '../../../components/recipesComponents/RecipeDetailsComponents/Servings';
-import Instructions from '../../../components/recipesComponents/RecipeDetailsComponents/Instructions';
-import Comments from '../../../components/recipesComponents/RecipeDetailsComponents/Comments';
-import AbsoluteMenu from '../../../components/recipesComponents/RecipeDetailsComponents/AbsoluteMenu';
-import styles from "./styles"
-import useAnimatedRecipesDetails from '../../../helpers/hooks/useAnimatedRecipesDetails';
-import BottomSheet from '@gorhom/bottom-sheet';
-import BlurScreen from '../../../components/globalComponents/BlurScreen/BlurScreen';
-import RecipesDetailsBottomSheet from '../../../components/recipesComponents/RecipeDetailsComponents/RecipesDetailsBottomSheet';
-import { absoluteMenyHeight } from '../../../utils/global/globalValues';
+import React, { useCallback, useRef, useState } from 'react'
+import { LayoutChangeEvent } from 'react-native'
+import Animated from 'react-native-reanimated'
+import Header from '../../../components/recipeTabComponents/RecipeDetailsComponents/Header'
+import AbsoluteMenu from '../../../components/recipeTabComponents/RecipeDetailsComponents/AbsoluteMenu'
+import styles from './styles'
+import useAnimatedRecipesDetails from '../../../helpers/hooks/useAnimatedRecipesDetails'
+import BottomSheet from '@gorhom/bottom-sheet'
+import BlurScreen from '../../../components/globalComponents/BlurScreen/BlurScreen'
+import RecipesDetailsBottomSheet from '../../../components/recipeTabComponents/RecipeDetailsComponents/RecipesDetailsBottomSheet'
+import { absoluteMenyHeight } from '../../../utils/global/globalValues'
+import { recipesDetailsMenu } from '../../../utils/header/headerProperties'
+import Content from '../../../components/recipeTabComponents/RecipeDetailsComponents/Content/Content'
 
 const RecipeDetails = () => {
-  const [layoutMenu, setLayoutMenu] = useState<{x: number, width: number}[]>([])
-  const [layoutSection, setLayoutSection] = useState<number[]>([])
-  const [stopAnimated, setStopAnimated] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
   const [showBlur, setShowBlur] = useState(false)
 
+  const layoutSection = useRef<number[]>([])
   const bottomSheetRef = useRef<BottomSheet>(null)
-  const scrollRef = useRef<ScrollView>(null)
-  const inputRef = useRef<TextInput>(null)
-  const timeOut = useRef<any>(null)
+  const scrollRef = useRef<Animated.ScrollView>(null)
+  const layoutMenu = useRef<{ x: number; width: number }[]>([])
+ 
+  const {onScroll, opacityStyle, headerTranslateStyle, requestStop} = useAnimatedRecipesDetails
+  ({layoutSection: layoutSection.current, activeIndex,setActiveIndex})
 
-  const {handleScroll, opacityView, animatedHeaderRecipesDetailsTranslate} = useAnimatedRecipesDetails()
+  const handleLayoutSection = useCallback((event: LayoutChangeEvent) => { 
+    layoutSection.current = [...layoutSection.current, event.nativeEvent.layout.y - absoluteMenyHeight]
+   }, [])
 
-  const handleLayoutSection = (event: LayoutChangeEvent) => {
-    event.persist()
+  const handleLayoutMenu = useCallback((event: LayoutChangeEvent) => {
+    if (layoutMenu.current.length === recipesDetailsMenu.length) return
+    layoutMenu.current = [...layoutMenu.current, { x: event.nativeEvent.layout.x, width: event.nativeEvent.layout.width}]
+  }, [])
 
-    if(layoutSection.length === 3) return
-    setLayoutSection(prev => [...prev, event.nativeEvent.layout.y - absoluteMenyHeight])
-  }
+  const goTo = useCallback((index: number) => {
+    requestStop()
 
-  const handleLayoutMenu = (event: LayoutChangeEvent)=> {
-    event.persist()
-
-    if(layoutMenu.length === 3) return
-    setLayoutMenu(prev => [...prev, {x: event.nativeEvent.layout.x, width: event.nativeEvent.layout.width}])
-  }
-
-  const goTo = (index: number) => {
-    scrollRef.current?.scrollTo({y: layoutSection[index], animated: true})
-
-    if(timeOut.current) {
-      clearTimeout(timeOut.current)
-      timeOut.current = null
-    }
+    const y: number = layoutSection.current[index] ?? 0;
+    scrollRef.current?.scrollTo?.({ y, animated: true })
 
     setActiveIndex(index)
-    !stopAnimated && setStopAnimated(true)
-  }
+  }, [requestStop])
 
-  const stopAnimatedMenu = () => {
-    if(stopAnimated && !timeOut.current) {
-      timeOut.current = setTimeout(() => {
-        setStopAnimated(false)
-        timeOut.current = null
-      }, 500)
-
-      return true
-    }else if(timeOut.current) return true
-    
-    return false
-  }
-
-  const openBottomSheetHandler = () => {
+  const openBottomSheetHandler = useCallback(() => {
     setShowBlur(true)
     bottomSheetRef.current?.expand()
-  }
+  }, [])
 
-  const onChangeBTSHandler = (index: number) => {
-    if(index === -1) setShowBlur(false)
-  }
+  const onAnimateBTS = useCallback((_: number, toIndex: number) => {
+    if (toIndex === -1) setShowBlur(false)
+  }, [])
 
-  const closeBottomSheetHandler = () => {
+  const closeBottomSheetHandler = useCallback(() => {
     setShowBlur(false)
     bottomSheetRef.current?.close()
-  }
+  }, [])
 
   return (
     <>
-      <Animated.ScrollView 
+      <Animated.ScrollView
         bounces={false}
-        ref={scrollRef} 
-        style={styles.container} 
-        keyboardDismissMode='on-drag'
-        keyboardShouldPersistTaps={true}
+        ref={scrollRef}
+        style={styles.container}
+        keyboardDismissMode="on-drag"
+        keyboardShouldPersistTaps="always"
         showsVerticalScrollIndicator={false}
-        onScroll={handleScroll(activeIndex, layoutSection, setActiveIndex, stopAnimatedMenu)} 
+        onScroll={onScroll}             
+        scrollEventThrottle={16}
       >
-        <Header  
-          goTo={goTo} 
-          layout={layoutMenu}
-          activeIndex={activeIndex} 
-          opacityView={opacityView} 
+        <Header
+          goTo={goTo}
+          layout={layoutMenu.current}
+          opacityStyle={opacityStyle}          
           openBottomSheetHandler={openBottomSheetHandler}
         />
-        <Informations />
-        <Servings handleLayout={handleLayoutSection} />
-        <Instructions handleLayout={handleLayoutSection}/>
-        <Comments handleLayout={handleLayoutSection} inputRef={inputRef}/>
+          
+        <Content handleLayout={handleLayoutSection}/>
       </Animated.ScrollView>
 
-      <AbsoluteMenu 
+      <AbsoluteMenu
         goTo={goTo}
-        layout={layoutMenu}
+        layout={layoutMenu.current}
         activeIndex={activeIndex}
-        handleLayoutMenu={handleLayoutMenu}
-        animatedHeaderRecipesDetailsTranslate={animatedHeaderRecipesDetailsTranslate}  
+        handleLayout={handleLayoutMenu}
+        animatedHeaderRecipesDetailsTranslate={headerTranslateStyle} 
       />
 
       {showBlur && <BlurScreen />}
-      <RecipesDetailsBottomSheet ref={bottomSheetRef} closeBottomSheetHandler={closeBottomSheetHandler} onChange={onChangeBTSHandler}/>
-    </> 
+      <RecipesDetailsBottomSheet
+        ref={bottomSheetRef}
+        closeBottomSheetHandler={closeBottomSheetHandler}
+        onAnimate={onAnimateBTS}
+      />
+    </>
   )
 }
 

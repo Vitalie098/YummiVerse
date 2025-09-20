@@ -1,92 +1,114 @@
-import { View, Animated, Easing } from 'react-native'
-import React, { useEffect, useRef, useState } from 'react'
-import { screenWidth } from '../../../utils/global/globalValues'
+import React, { useEffect, useRef, useCallback, memo } from "react"
+import { View, Animated, Easing, LayoutChangeEvent } from "react-native"
 import styles from "./styles"
-import { delay } from '../../../helpers/functions/delay'
 
-interface IStoryProgress {
-  isLongPressed: boolean
+type IStoryProgress = {
   index: number
-  done: boolean
   active: boolean
+  done: boolean
   duration: number
-  onEnd: (newSlide: number, type: "prev" | "next", value: number) => void
+  isLongPressed: boolean
+  onEnd: (nextIndex: number, dir: "next" | "prev", step: number) => void
 }
 
-const StoryProgress = ({index, active, done, duration, isLongPressed, onEnd}: IStoryProgress) => {
-  const [progressWidth, setProgressWidth] = useState(0)
+const StoryProgress = ({ index, active, done, duration, isLongPressed, onEnd }: IStoryProgress) => {
+  const progress = useRef(new Animated.Value(0)).current
 
-  const progress = useRef(new Animated.Value(-screenWidth / 3)).current
-  const longPressElapsedDuration = useRef(0)
+  const widthRef = useRef(0)
+  const elapsedRef = useRef(0) 
+  const rafId = useRef<number | null>(null)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const listener = progress.addListener(({ value }) => {
-      longPressElapsedDuration.current = Math.abs((value * duration) / progressWidth)
-      return
+      const w = widthRef.current
+      const d = duration
+
+      if (w > 0 && d > 0) {
+        const elapsed = Math.min(d, Math.abs((value * d) / w))
+        elapsedRef.current = elapsed
+      }
     })
 
     return () => {
       progress.removeListener(listener)
       progress.removeAllListeners()
     }
-  })
+  }, [progress])
 
   useEffect(() => {
+    if (done) {
+      progress.setValue(0)
+      return
+    }
+
+    if (!active) {
+      progress.stopAnimation()
+      progress.setValue(-widthRef.current)
+      return
+    }
+
+    if (active && widthRef.current > 0) {
+      start(duration)
+    }
+  }, [active, done, progress])
+
+
+  useEffect(() => {
+    if (!active) return
+
     if (isLongPressed) {
       progress.stopAnimation()
     } else {
-      if (active) {
-        animation(longPressElapsedDuration.current).start((status) => {
-          if(status.finished) onEnd(index + 1, "next", 1)
-        })
-      }
+      const remaining = Math.max(0, elapsedRef.current)
+      if (widthRef.current > 0 && remaining > 0) start(remaining)
     }
-  }, [isLongPressed, progressWidth])
-  
-  useEffect(() => {
-    progress.setValue(-progressWidth)
-
-    if (active) {
-      progress.setValue(-progressWidth);
-      
-      (async () => {
-        await delay(0)
-
-        animation(duration).start((status) => {
-          if(status.finished) onEnd(index + 1, "next", 1)
-        })
-      })()
-    }
-
-    if (done) progress.setValue(0)
-  }, [active, done])
+  }, [isLongPressed, progress])
 
   useEffect(() => {
-    progress.setValue(-progressWidth)
-  }, [progressWidth])
+    return () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current)
+    }
+  }, [])
 
-  const animation = (durations: number) => {
-    return Animated.timing(progress, {
+  const animation = useCallback((ms: number) =>
+    Animated.timing(progress, {
       toValue: 0,
-      duration: durations,
+      duration: ms,
       easing: Easing.linear,
       useNativeDriver: true,
+    }),
+    [progress]
+  )
+
+  const start = useCallback((ms: number) => {
+    animation(ms).start(({ finished }) => {
+      if (finished) onEnd(index + 1, "next", 1)
     })
-  } 
+  },[animation, onEnd, index])
+
+  const onLayout = useCallback((e: LayoutChangeEvent) => {
+    const w = e.nativeEvent.layout.width
+    if (!w || w === widthRef.current) return
+
+    widthRef.current = w
+    progress.setValue(-w)
+
+    if (active) {
+      if (rafId.current) cancelAnimationFrame(rafId.current)
+      rafId.current = requestAnimationFrame(() => {
+        start(duration)
+      })
+    }
+  },[progress, start])
 
   return (
-    <View
-      key={index}
-      style={styles.progress}>
+    <View style={styles.progress}>
       <Animated.View
-        onLayout={(e) => setProgressWidth(e.nativeEvent.layout.width)}
-        style={{
-          ...styles.animatedProgress,
-          transform: [{translateX: progress}]
-        }}
+        onLayout={onLayout}
+        style={{ ...styles.animatedProgress, transform: [{ translateX: progress }] }}
       />
     </View>
   )
 }
 
-export default StoryProgress
+export default memo(StoryProgress)

@@ -30,7 +30,10 @@ const Header = ({currentIndex, isLightMode, numberOfSlides, expandBottomSheet}: 
       <View style={globalStyles.horizontalSpaceBetween}>
         <Time mode={isLightMode ? "dark" : "light"} time={5}/>
 
-        <TouchableOpacity style={{...styles.allStepsButtonWrapper, borderColor: getColor(isLightMode)}} onPress={() => navigation.navigate("CookingListSteps", {currentIndex})}>
+        <TouchableOpacity 
+          style={{...styles.allStepsButtonWrapper, borderColor: getColor(isLightMode)}} 
+          onPress={() => navigation.navigate("CookingListSteps", {currentIndex})}
+        >
           <Text style={{...styles.allStepsButtonText, color: getColor(isLightMode)}}>All steps</Text>
           <Instructions color={getColor(isLightMode)}/>
         </TouchableOpacity>

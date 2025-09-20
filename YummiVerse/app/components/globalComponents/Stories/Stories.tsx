@@ -8,9 +8,9 @@ import { useNavigation } from '@react-navigation/native'
 import Animated, { runOnJS, useAnimatedScrollHandler, useSharedValue } from 'react-native-reanimated'
 
 const Stories = () => {
-  const [isScrolling, setIsScrolling] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
-  
+  const [isScrolling, setIsScrolling] = useState(false)
+
   const navigation = useNavigation()
   const ref = useRef<FlatList>(null)
 
@@ -24,12 +24,12 @@ const Stories = () => {
     setActiveIndex(index)
   }
 
-  const onClose = () => navigation.goBack();
+  const onClose = () => navigation.goBack()
 
   const swipeDown = Gesture.Fling()
     .direction(Directions.DOWN)
     .onEnd(() => {
-      runOnJS(onClose)();
+      runOnJS(onClose)()
     });
 
   return (
@@ -37,12 +37,15 @@ const Stories = () => {
       <Animated.FlatList
         ref={ref}
         data={slides}
-        keyExtractor={(item) => item.key.toString()}
+        windowSize={5}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
         showsHorizontalScrollIndicator={false}
+        keyExtractor={(item) => item.key.toString()}
         onScrollBeginDrag={() => setIsScrolling(true)}
         onScrollEndDrag={() => setIsScrolling(false)}
         onMomentumScrollEnd={onMomentumScrollEnd}
-        getItemLayout={(data, index) => ({ length: screenWidth, offset: screenWidth * index, index }) }
+        getItemLayout={(_, index) => ({ length: screenWidth, offset: screenWidth * index, index }) }
         horizontal
         pagingEnabled
         onScroll={onScroll}
@@ -52,8 +55,8 @@ const Stories = () => {
             index={index}
             scrollX={scrollX}
             flatListRef={ref}
-            isScrolling={isScrolling}
             active={index === activeIndex}
+            paused={isScrolling && index === activeIndex}
           />
         )}
       />

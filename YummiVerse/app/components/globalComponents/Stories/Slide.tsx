@@ -11,22 +11,17 @@ import FastImage from 'react-native-fast-image'
 interface ISlide {
   item: any
   index: number
-  isScrolling: boolean,  
+  paused: boolean
   active: boolean, 
   onPrevNextSlide: (value: number) => void
 }
 
-const Slide = ({item, active, index, isScrolling, onPrevNextSlide}: ISlide) => {
+const Slide = ({item, active, index, paused, onPrevNextSlide}: ISlide) => {
   const [isLongPressed, setIsLongPressed] = useState(false)
   const [activeSlide, setActiveSlide] = useState(0)
   const [loading, setLoading] = useState(true)
-  const [duration, setDuration] = useState(0)
 
   const insets = useSafeAreaInsets()
-
-  useEffect(() => {
-    setActiveSlide(0)
-  }, [active])
 
   const goPrevNextHandler = useCallback((newSlide: number, type: "prev" | "next", value: number) => {
     if(
@@ -42,10 +37,7 @@ const Slide = ({item, active, index, isScrolling, onPrevNextSlide}: ISlide) => {
     <View style={styles.container}>
       <View style={styles.imageWrapper}>
           <FastImage
-            onLoad={() => {
-              setLoading(false)
-              setDuration(5000)
-            }}
+            onLoad={() => setLoading(false)}
             source={{ uri: item.data[activeSlide] }}
             style={styles.image}
           />
@@ -65,22 +57,21 @@ const Slide = ({item, active, index, isScrolling, onPrevNextSlide}: ISlide) => {
 
       <View style={{...styles.header, top: insets.top + 16}}>
         <View
-          key={index}
           style={styles.progressWrapper}
         >
           {item.data.map((_: any, i: number) => (
             <StoryProgress
               index={i}
-              duration={duration}
+              duration={5000}
               key={`${index}${i}`}
               done={activeSlide > i}
               onEnd={goPrevNextHandler}
-              isLongPressed={isLongPressed || isScrolling}
               active={activeSlide === i && !loading && active}
+              isLongPressed={(isLongPressed || paused) && activeSlide === i && active}
             />
           ))} 
         </View>
-        
+
         <StoryHeaderActions />
       </View>
 

@@ -17,7 +17,7 @@ const Header = () => {
   const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp>();
 
-  const {headerAnimatedStyle} = useAnimatedHeader()
+  const {containerAnimatedStyle, contentAnimatedStyle} = useAnimatedHeader()
   const {activeIndex} = useRecipesMenu()
 
   const handleLayout = (event: LayoutChangeEvent, index: number) => {
@@ -36,7 +36,7 @@ const Header = () => {
       case 'MyCoach':
       case 'Community':
         return (
-          <View>
+          <Animated.View style={contentAnimatedStyle}>
             <View style={styles.bottomHeaderWraper}>
               {menuByScreen[route.name].map((item, index) => (
                 <MenuItem 
@@ -58,7 +58,7 @@ const Header = () => {
                 />
               )}
             </View>
-          </View>
+          </Animated.View>
         );
       default:
         return null;
@@ -66,9 +66,7 @@ const Header = () => {
   };
 
   return (
-    <Animated.View
-      style={headerAnimatedStyle}
-    >
+    <Animated.View style={containerAnimatedStyle}>
       <View style={{...styles.contentWrapper, paddingTop: Math.max(insets.top + 5, 25)}}>
         {renderContent()}
       </View>

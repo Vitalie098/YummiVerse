@@ -5,17 +5,17 @@ import styles from './styles';
 
 interface IRecipesDetailsBottomSheet {
   children: React.ReactNode;
-  onChange: (index: number) => void
+  onAnimate: (_: number, toIndex: number) => void
 }
 
-const CookingModeBottomSheet = memo(forwardRef<BottomSheetMethods, IRecipesDetailsBottomSheet>(({onChange, children}, ref) => {
+const CookingModeBottomSheet = memo(forwardRef<BottomSheetMethods, IRecipesDetailsBottomSheet>(({onAnimate, children}, ref) => {
   return (
     <BottomSheet
       index={-1}
       ref={ref}
-      onChange={onChange}
       snapPoints={[161]}
       enablePanDownToClose={true}
+      onAnimate={onAnimate}
       handleIndicatorStyle={styles.hadnleIndicator}
     >
       <BottomSheetView style={styles.container}>

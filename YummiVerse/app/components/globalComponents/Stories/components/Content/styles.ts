@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         fontSize: 40, 
         color: "#fff",
         lineHeight: 44, 
-        fontWeight: "700" 
+        fontWeight: "700",
     },
     buttonsWrapper: {
         gap: 11,

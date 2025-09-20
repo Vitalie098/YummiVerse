@@ -9,7 +9,7 @@ const Content = () => {
 
   return (
     <View style={{...styles.container, bottom: insets.bottom }}>
-      <Text style={styles.title}>Creamy Mango and Eggnog Cookies Cups</Text>
+      <Text style={styles.title}>Jesus Christ, King of kings and Lord of lords</Text>
       <View style={styles.buttonsWrapper}>
         <TouchableOpacity style={styles.seeButton}>
           <Text style={styles.buttonText}>See the recipe</Text>

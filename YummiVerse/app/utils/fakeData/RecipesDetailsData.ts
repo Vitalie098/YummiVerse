@@ -46,6 +46,7 @@ export const advices: {
 
 export const comments = [
   {
+    id: 1,
     name: "Sarah Jones",
     time: "3h",
     comment: "Super delicious dish! My kids loved it!",
@@ -53,6 +54,7 @@ export const comments = [
     comments: 13
   },
   {
+    id: 2,
     name: "Mary Poppins",
     time: "6h",
     comment: "Love the recipe! I added a bit of spicy sauce. ☺️",
@@ -60,6 +62,7 @@ export const comments = [
     comments: 2
   },
   {
+    id: 3,
     name: "Sam Wrights",
     time: "5h",
     comment: "Perfect recipe for a light lunch 👍🏻",

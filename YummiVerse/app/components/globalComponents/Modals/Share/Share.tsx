@@ -4,7 +4,6 @@ import ArrowLeft from "../../../../assets/svg/ArrowLeft.svg"
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { TextInput } from 'react-native-gesture-handler'
 import styles from "./styles"
-// import MultimediaMessageForm from '../../MultimediaMessageForm'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { RecipesNavigationProp, RecipesResultNavigationRouteProp } from '../../../../core/navigation/types/RecipesNavigatorTypes'
 import { colors } from '../../../../utils/global/globalStyles'

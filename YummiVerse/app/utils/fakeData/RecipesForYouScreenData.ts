@@ -1,26 +1,26 @@
 export const recipesForYouData: RecipesForYou = {
 	help: [
-		{
-			uri: 'https://images.pexels.com/photos/2710131/pexels-photo-2710131.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-			title: "Creamy Mango and Eggnog Cookies",
-		},
-		{
-			uri: 'https://images.pexels.com/photos/1237611/pexels-photo-1237611.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-			title: "Creamy Mango and Eggnog Cookies",
-		},
-		{
-			uri: 'https://images.pexels.com/photos/3314294/pexels-photo-3314294.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-			title: "Creamy Mango and Eggnog Cookies",
-		},
-		{
-			uri: 'https://images.pexels.com/photos/4906249/pexels-photo-4906249.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-			title: "Creamy Mango and Eggnog Cookies",
-		},
-		{
-			uri: 'https://images.pexels.com/photos/1964471/pexels-photo-1964471.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-			title: "Creamy Mango and Eggnog Cookies",
-		},
-	],
+    {
+      uri: 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg',
+      title: 'Caramel Strawberry Pancake Stack',
+    },
+    {
+      uri: 'https://images.pexels.com/photos/842571/pexels-photo-842571.jpeg',
+      title: 'Warm Shrimp & Greens Bowl',
+    },
+    {
+      uri: 'https://images.pexels.com/photos/604969/pexels-photo-604969.jpeg',
+      title: 'Roasted Tomato Quiche',
+    },
+    {
+      uri: 'https://images.pexels.com/photos/1132558/pexels-photo-1132558.jpeg',
+      title: 'Strawberries & Cream Parfait',
+    },
+    {
+      uri: 'https://images.pexels.com/photos/1199960/pexels-photo-1199960.jpeg',
+      title: 'Sesame-Seed Cheeseburger',
+    },
+  ],
   bestRecipes: [{
       title: "Parenting",
       image: require("../../assets/webp/MegaMeal.webp")

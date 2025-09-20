@@ -2,7 +2,7 @@ import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 import styles from "./styles"
 import Ingredient from './Ingredient'
-import Utensil from '../../../../../recipesComponents/RecipeDetailsComponents/Utensils/Utensil'
+import Utensil from '../../../../../recipeTabComponents/RecipeDetailsComponents/Utensils/Utensil'
 import { utensil } from '../../../../../../utils/renderIcons/RecipeDetailsUtensil'
 
 const ingredientsData = ["Aubergines", "Onions", "Olive oil"]
@@ -16,6 +16,7 @@ const IngredientsByStep = () => {
         <View style={styles.ingredientsWrapper}>
           <FlatList 
             bounces={false}
+            //keyExtractor for real data
             data={ingredientsData}
             style={{maxHeight: 450}}
             contentContainerStyle={{gap: 8}}
@@ -29,6 +30,7 @@ const IngredientsByStep = () => {
         <Text style={styles.titleFooter}>Utensils for this step</Text>
         <FlatList 
           data={utensilsData}
+          //keyExtractor for real data
           renderItem={({item}) => <Utensil text={item} utensilType={item}/>}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{gap: 8}}

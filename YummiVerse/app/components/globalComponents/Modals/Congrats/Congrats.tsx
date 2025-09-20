@@ -17,6 +17,8 @@ const Congrats = () => {
   const { type } = useRoute<RecipesCongratsNavigationRouteProp>().params
   const navigation = useNavigation<RecipesNavigationProp>()
   const insets = useSafeAreaInsets()
+  
+  const popCount = type === "congrats" ? 2 : 4
 
   const onPressHandler = (type: shareType) => {
     if(type === "photo") getPermissionAndTakePhoto(undefined, navigation)
@@ -26,7 +28,7 @@ const Congrats = () => {
   return (
     <View style={styles.container}>
       <View style={{...styles.contentWrapper, paddingTop: insets.top}}>
-        <TouchableOpacity style={styles.close} onPress={() => {navigation.pop(2)}} hitSlop={7}>
+        <TouchableOpacity style={styles.close} onPress={() => navigation.pop(popCount)} hitSlop={7}>
           <Close color={colors.mainColorT} />
         </TouchableOpacity>
         

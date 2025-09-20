@@ -1,4 +1,4 @@
-import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import React, { useRef, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BottomSheet from '@gorhom/bottom-sheet';
@@ -9,14 +9,14 @@ import BlurScreen from '../../BlurScreen/BlurScreen';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import IngredientsByStep from './components/IngredientsByStep';
-import Ingredients from '../../../recipesComponents/RecipeDetailsComponents/Ingredients';
+import Ingredients from '../../../recipeTabComponents/RecipeDetailsComponents/Ingredients';
 import CookingModeBottomSheet from './components/CookingModeBottomSheet';
-import { actionButton, getColor } from '../../../../utils/renderIcons/CookingMode';
+import { getColor } from '../../../../utils/renderIcons/CookingMode';
 
 const numberOfSlides = 5
 
 const CookingMode = () => {
-  const [bottomSheetContent, setBottomSheetContent] = useState(0)
+  const [bottomSheetContent, setBottomSheetContent] = useState(1)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [showBlur, setShowBlur] = useState(false)
 
@@ -25,17 +25,17 @@ const CookingMode = () => {
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
-  const handleSlideNavigationHandler = (type: actionButton) => {
-    if(type === "prev") {
-      setCurrentIndex(prev => prev - 1)
-    }else {
-      if(currentIndex === numberOfSlides - 1) {
-        navigation.push("Congrats", {type: "congrats"})
-        return
-      }
-      setCurrentIndex(prev => prev + 1) 
+  const handleSlideNavigationHandler = (goNext?: boolean) => {
+    if (!goNext) {
+      return setCurrentIndex((prev) => prev - 1);
     }
-  }
+
+    if (currentIndex === numberOfSlides - 1) {
+      return navigation.push("Congrats", { type: "congrats" });
+    }
+
+    setCurrentIndex((prev) => prev + 1);
+  };
 
   const expandBottomSheet = (variant: number) => {
     setShowBlur(true)
@@ -43,7 +43,10 @@ const CookingMode = () => {
     setTimeout(() => bottomSheetRef.current?.expand(), 150)
   }
 
-  const onChangeBTS = (index: number) => { if(index === -1) setShowBlur(false) }
+  const onAnimateBTS = (_: number, toIndex: number) => { 
+
+    if(toIndex === -1) setShowBlur(false) 
+  }
   const isLightMode = () => currentIndex % 2 === 1
   
   return (
@@ -62,19 +65,9 @@ const CookingMode = () => {
         expandBottomSheet={expandBottomSheet} 
       />
 
-      <View style={styles.absoluteButtonsWrapper}>
-        <TouchableWithoutFeedback onPress={() => handleSlideNavigationHandler("prev")} disabled={currentIndex === 0}>
-          <View style={{ flex: 1 }} />
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback onPress={() => handleSlideNavigationHandler("next")}>
-          <View style={{ flex: 1}} />
-        </TouchableWithoutFeedback>
-      </View>
-
       {showBlur && <BlurScreen />}
 
-      <CookingModeBottomSheet ref={bottomSheetRef} onChange={onChangeBTS}>
+      <CookingModeBottomSheet ref={bottomSheetRef} onAnimate={onAnimateBTS}>
         {bottomSheetContent === 1 && <IngredientsByStep /> }
         {bottomSheetContent === 2 && <Ingredients />}
       </CookingModeBottomSheet> 

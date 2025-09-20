@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { FlatList } from 'react-native-gesture-handler'
@@ -16,9 +16,10 @@ const CookingListSteps = () => {
   return (
     <View style={{...styles.container, paddingTop: insets.top}}>
       <RecipeTitle type="back" isLightMode={false} />
-
+      
       <FlatList
         data={cookingListStepsData}
+        keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.flatListContainer}
         renderItem={({item, index}) => <Step data={item} index={index} isCurrentStep={currentIndex === index}/>}
       />

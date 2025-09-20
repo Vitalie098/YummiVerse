@@ -10,12 +10,12 @@ interface IStory {
   item: any
   index: number  
   active: boolean, 
-  isScrolling: boolean,
+  paused: boolean
   scrollX: SharedValue<number>
   flatListRef: React.RefObject<FlatList<any> | null>
 }
 
-const Story = ({item, index, scrollX, active, isScrolling, flatListRef}: IStory) => {
+const Story = ({item, index, scrollX, active, paused, flatListRef}: IStory) => {
   const inputRange = [(index - 0.5) * screenWidth, index * screenWidth, (index + 0.5) * screenWidth]
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -66,11 +66,11 @@ const Story = ({item, index, scrollX, active, isScrolling, flatListRef}: IStory)
       <Slide
         item={item}
         index={index}
+        paused={paused}
         active={active}
-        isScrolling={isScrolling}
         onPrevNextSlide={onPrevNextSlide}
       />
     </Animated.View>
   )
 }
-export default Story
+export default React.memo(Story)

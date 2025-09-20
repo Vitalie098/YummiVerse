@@ -10,7 +10,7 @@ import { actionButton, getColor } from '../../../../../../utils/renderIcons/Cook
 interface IFooter {
   isLightMode: boolean
   currentIndex: number
-  onPress: (type: actionButton) => void
+  onPress: (goNext?: boolean) => void
   expandBottomSheet: (variant: number) => void
 }
 
@@ -31,8 +31,8 @@ const Footer = ({isLightMode, currentIndex, expandBottomSheet, onPress}: IFooter
           </TouchableOpacity>
 
           <View style={styles.prevNextWrapper}>
-            <PreviousNextButton type="prev" active={false} onPress={() => onPress("prev")} isLightMode={isLightMode} disabled={currentIndex === 0}/>
-            <PreviousNextButton type="next" active={true} onPress={() => onPress("next")} isLightMode={isLightMode}/>
+            <PreviousNextButton type="prev" active={false} onPress={() => onPress()} isLightMode={isLightMode} disabled={currentIndex === 0}/>
+            <PreviousNextButton type="next" active={true} onPress={() => onPress(true)} isLightMode={isLightMode}/>
           </View>
         </View>
       </View>
